@@ -10,27 +10,26 @@ fs.readFile(PATH, 'utf-8', (err, data) => {
 });
 
 // Get current date and time
-let currentDate = new Date();
-let month = currentDate.getMonth() + 1;  // getMonth uses 0-11 format
-let day = currentDate.getDate();
-let year = currentDate.getFullYear();
-let hour = currentDate.getHours();
+currentDate = new Date();
+month = currentDate.getMonth() + 1;  // getMonth uses 0-11 format
+day = currentDate.getDate();
+year = currentDate.getFullYear();
+hour = currentDate.getHours();
 // getMinutes doesn't have a leading 0 on numbers 0-9
-function returnMinutes() {
+minute = () => {
   if (currentDate.getMinutes() < 10) {
     return `0${currentDate.getMinutes()}`
   } else {
     return currentDate.getMinutes()
   }
 };
-let minute = returnMinutes();
 
 // write date and time to last_run.json
-let timestamp = `${month}/${day}/${year} ${hour}:${minute}`;
-let timestamp_obj = {
+timestamp = `${month}/${day}/${year} ${hour}:${minute()}`;
+timestamp_obj = {
   'last_run': timestamp,
 };
-let timestamp_str = JSON.stringify(timestamp_obj);
+timestamp_str = JSON.stringify(timestamp_obj);
 fs.writeFile(PATH, timestamp_str, (err) => {
     if(err) console.log(err);
 });
