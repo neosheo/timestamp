@@ -43,7 +43,6 @@ int main(void) {
 
 	char date[1024];
 	snprintf(date, sizeof(date), "%d/%02d/%02d %02d:%02d\n", tm.tm_mon + 1, tm.tm_mday, tm.tm_year + 1900, tm.tm_hour, tm.tm_min);
-//	date[strlen(date) - 1] = '\0';
 
 	fpw = fopen("./last_run.json", "w");
 	fprintf(fpw, "{last run: %s}", date);
