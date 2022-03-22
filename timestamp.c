@@ -3,13 +3,11 @@
 #include <time.h>
 #include <string.h>
 
-int main(void) {
+int timestamp(void) {
 	FILE *fp;
 	FILE *fpw;
-	char c;
 	char msg[100];
 	int index = 0;
-
 	fp = fopen("./last_run.json", "r");
 	if (fp == NULL) {
 		printf("Cannot open file\n");
@@ -17,7 +15,6 @@ int main(void) {
 	}
 
 	// Read last_run.json and print when last run
-	c = fgetc(fp);
 	while (1) {
 		int c = fgetc(fp);
 		if (c == EOF) {
