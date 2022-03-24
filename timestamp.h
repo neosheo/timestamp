@@ -1,6 +1,6 @@
 #ifndef TIMESTAMP_DOT_H
 #define TIMESTAMP_DOT_H
 
-void timestamp();
+int timestamp(void);
 
 #endif /* TIMESTAMP_DOT_H */
