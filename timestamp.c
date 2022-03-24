@@ -1,4 +1,3 @@
-#include "timestamp.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -8,18 +7,25 @@ int timestamp(void) {
 	FILE *fp;
 	FILE *fpw;
 	FILE *fpc;
+	FILE *fpr;
 	char msg[100];
 	int index = 0;
+	
 	fp = fopen("./last_run.json", "r");
+	
+	// Create last_run.json if it doesn't exist
 	if (fp == NULL) {
 		fpc = fopen("./last_run.json", "w");
 		fprintf(fpc, "{\"last run\": \"0\\00\\0000 00:00\"}");
-		fclose(fpc);
+		fclose(fpc);		
 	}
+	fclose(fp);
+
+	fpr = fopen("./last_run.json", "r");
 
 	// Read last_run.json and print when last run
 	while (1) {
-		int c = fgetc(fp);
+		int c = fgetc(fpr);
 		if (c == EOF) {
 			msg[index] = '\0';
 			break;
@@ -33,7 +39,7 @@ int timestamp(void) {
 		}
 	}
 
-	fclose(fp);
+	fclose(fpr);
 	printf("%s\n", msg);
 
 	time_t t = time(NULL);

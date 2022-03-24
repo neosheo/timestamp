@@ -3,7 +3,10 @@ const PATH = `${__dirname}/last_run.json`;
 
 function timestamp() {
     fs.readFile(PATH, 'utf-8', (err, data) => {
-      if (err) {console.log('Has not been run before. Run code again.');};
+      if (err) {
+	console.log('Please run again.');
+	console.log(err);
+};
       const last_run = JSON.parse(data);
       console.log(`Last run on ${last_run['last_run']}`);
     });
